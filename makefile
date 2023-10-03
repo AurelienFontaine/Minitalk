@@ -6,7 +6,7 @@
 #    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/09 12:51:01 by afontain          #+#    #+#              #
-#    Updated: 2023/08/08 15:14:14 by afontain         ###   ########.fr        #
+#    Updated: 2023/10/03 18:22:48 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,20 +18,21 @@ SRCS_DIR	= srcs/
 
 INCLUDE_DIR = include/
 
-PRINTF_DIR  = printf/
+PRINTF_DIR  = ./Printf/
 
-SRCS		=	${SRCS_DIR}main.c \
-				# ${PRINTF_DIR}
+Server		=	${SRCS_DIR}server.c \
+				${SRCS_DIR}utils.c \
 				# ${INCLUDE_DIR}
-				
 
-SRCS_BONUS	=
+PRINTF = $(PRINTF_DIR)libftprintf.a
+
+# SRCS_BONUS	=
 
 OBJS		=	${SRCS:%.c=%.o}
 
 OBJS_BONUS	=	${SRCS_BONUS:%.c=%.o}
 
-CC			=	clang
+CC			=	gcc
 
 RM			=	rm -rf
 
@@ -45,7 +46,8 @@ CFLAGS		=	-Wall -Werror -Wextra -g3
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+		make -C $(PRINTF_DIR)
+		${CC} ${CFLAGS} ${OBJS} $(PRINTF) -o ${NAME}
 
 $(BONUS):	${OBJS_BONUS}
 		${CC} ${CFLAGS} ${OBJS_BONUS} -o ${BONUS}
@@ -64,6 +66,7 @@ bonus:	${BONUS}
 clean:		
 		${RM} ${OBJS}
 		${RM} ${OBJS_BONUS}
+		make fclean -C $(PRINTF_DIR)
 
 fclean:		clean
 		${RM} ${NAME}
