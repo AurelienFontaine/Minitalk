@@ -6,31 +6,30 @@
 #    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/09 12:51:01 by afontain          #+#    #+#              #
-#    Updated: 2023/10/03 18:22:48 by afontain         ###   ########.fr        #
+#    Updated: 2023/10/06 11:57:58 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	client
+NAME		=	server
 
-BONUS		=	server
-
-SRCS_DIR	= srcs/
+BONUS		=	client
 
 INCLUDE_DIR = include/
 
-PRINTF_DIR  = ./Printf/
 
-Server		=	${SRCS_DIR}server.c \
-				${SRCS_DIR}utils.c \
-				# ${INCLUDE_DIR}
+CLIENT		=	./srcs/test1.c \
+				./srcs/utils.c \
+				
+SERVER 		=   ./srcs/test2.c \
+				./srcs/utils.c \
 
 PRINTF = $(PRINTF_DIR)libftprintf.a
 
-# SRCS_BONUS	=
+PRINTF_DIR  = ./printf/
 
-OBJS		=	${SRCS:%.c=%.o}
+OBJS		=	${SERVER:%.c=%.o}
 
-OBJS_BONUS	=	${SRCS_BONUS:%.c=%.o}
+OBJS_BONUS	=	${CLIENT:%.c=%.o}
 
 CC			=	gcc
 
@@ -50,7 +49,8 @@ $(NAME):	${OBJS}
 		${CC} ${CFLAGS} ${OBJS} $(PRINTF) -o ${NAME}
 
 $(BONUS):	${OBJS_BONUS}
-		${CC} ${CFLAGS} ${OBJS_BONUS} -o ${BONUS}
+		make -C $(PRINTF_DIR)
+		${CC} ${CFLAGS} ${OBJS_BONUS} $(PRINTF) -o ${BONUS}
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -71,6 +71,7 @@ clean:
 fclean:		clean
 		${RM} ${NAME}
 		${RM} ${BONUS}
+		make fclean -C $(PRINTF_DIR)
 		@echo "\n${GREEN}Everything cleaned${DEFAULT}"
 
 re:			fclean

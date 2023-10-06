@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:19:10 by afontain          #+#    #+#             */
-/*   Updated: 2023/10/03 17:04:43 by afontain         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:25:27 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+void	*ft_memset(void *str, int c, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (!str)
+		return (NULL);
+	while (i < n)
+	{
+		((unsigned char *)str)[i] = c;
+		i++;
+	}
+	return (str);
 }
 
 // void	ft_putstr(char *str)
@@ -71,3 +86,6 @@ int ft_atoi(char *str)
 	}
 	return (nb * signe);
 }
+
+// Gestionnaire pour le signal SIGUSR2 (réception du caractère)
+
