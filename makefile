@@ -6,7 +6,7 @@
 #    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/09 12:51:01 by afontain          #+#    #+#              #
-#    Updated: 2023/10/06 11:57:58 by afontain         ###   ########.fr        #
+#    Updated: 2023/10/10 13:22:51 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ BONUS		=	client
 INCLUDE_DIR = include/
 
 
-CLIENT		=	./srcs/test1.c \
+CLIENT		=	./srcs/client.c \
 				./srcs/utils.c \
 				
-SERVER 		=   ./srcs/test2.c \
+SERVER 		=   ./srcs/server.c \
 				./srcs/utils.c \
 
 PRINTF = $(PRINTF_DIR)libftprintf.a

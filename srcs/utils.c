@@ -6,11 +6,24 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:19:10 by afontain          #+#    #+#             */
-/*   Updated: 2023/10/06 12:25:27 by afontain         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:55:33 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
+
+void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
+{
+	struct sigaction	susr;
+
+	susr.sa_sigaction = handler;
+	susr.sa_flags = SA_SIGINFO | SA_RESTART | SA_NODEFER;
+	sigemptyset(&susr.sa_mask);
+	if (sig == SIGUSR1)
+		sigaction(SIGUSR1, &susr, 0);
+	else if (sig == SIGUSR2)
+		sigaction(SIGUSR2, &susr, 0);
+}
 
 int	ft_strlen(char *str)
 {
@@ -21,44 +34,6 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
-
-void	*ft_memset(void *str, int c, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	while (i < n)
-	{
-		((unsigned char *)str)[i] = c;
-		i++;
-	}
-	return (str);
-}
-
-// void	ft_putstr(char *str)
-// {
-// 	write(1, str, ft_strlen(str));
-// }
-
-// void	ft_putnbr(int n)
-// {
-// 	if (n < 0)
-// 	{
-// 		write(1, "-", 1);
-// 		n *= -1;
-// 	}
-// 	if (n < 10)
-// 	{
-// 		ft_putchar(n + 48);
-// 	}
-// 	if (n > 9)
-// 	{
-// 		ft_putnbr(n / 10);
-// 		ft_putchar((n % 10) + 48);
-// 	}
-// }
 
 int ft_atoi(char *str)
 {
@@ -86,6 +61,3 @@ int ft_atoi(char *str)
 	}
 	return (nb * signe);
 }
-
-// Gestionnaire pour le signal SIGUSR2 (réception du caractère)
-
