@@ -6,7 +6,7 @@
 #    By: afontain <afontain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/09 12:51:01 by afontain          #+#    #+#              #
-#    Updated: 2023/10/10 13:22:51 by afontain         ###   ########.fr        #
+#    Updated: 2023/10/12 09:47:52 by afontain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,17 @@ CFLAGS		=	-Wall -Werror -Wextra -g3
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
+	make -C $(PRINTF_DIR)
+		
 $(NAME):	${OBJS}
-		make -C $(PRINTF_DIR)
+		
 		${CC} ${CFLAGS} ${OBJS} $(PRINTF) -o ${NAME}
+		
 
 $(BONUS):	${OBJS_BONUS}
-		make -C $(PRINTF_DIR)
+		
 		${CC} ${CFLAGS} ${OBJS_BONUS} $(PRINTF) -o ${BONUS}
+		
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
