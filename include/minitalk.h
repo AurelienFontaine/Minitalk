@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:20:17 by afontain          #+#    #+#             */
-/*   Updated: 2023/10/10 13:37:31 by afontain         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:20:32 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@
 void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *));
 int		ft_strlen(char *str);
 int		ft_atoi(char *str);
-// void	*ft_memset(void *str, int c, size_t n);
 
 #endif

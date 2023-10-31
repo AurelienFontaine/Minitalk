@@ -6,7 +6,7 @@
 /*   By: afontain <afontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:33:24 by afontain          #+#    #+#             */
-/*   Updated: 2023/10/10 13:47:22 by afontain         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:00:37 by afontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sig_usr(int sig, siginfo_t *info, void *context)
 	(void)context;
 	if (kill(info->si_pid, 0) < 0)
 	{
-		ft_printf("Erreur : envoie du signal au pid impossible : %d\n", info->si_pid);
+		ft_printf("Envoie du signal au pid impossible: %d\n", info->si_pid);
 		exit(EXIT_FAILURE);
 	}
 	if (bit < 0 && !c)
@@ -42,7 +42,7 @@ void	sig_usr(int sig, siginfo_t *info, void *context)
 int	main(int ac, char **av)
 {
 	pid_t	server_pid;
-	
+
 	server_pid = getpid();
 	(void)av;
 	if (ac != 1)
